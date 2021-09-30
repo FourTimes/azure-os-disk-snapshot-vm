@@ -44,7 +44,7 @@ resource "azurerm_virtual_machine" "tf" {
   name                  = var.vm_name
   network_interface_ids = [azurerm_network_interface.tf.id]
   tags                  = {}
-  vm_size               = "Standard_B2s"
+  vm_size               = var.vm_size
   zones                 = []
     storage_os_disk {
       caching                   = "ReadWrite"
