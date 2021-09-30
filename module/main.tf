@@ -1,6 +1,6 @@
 # create  the snapshot the disk
 resource "azurerm_snapshot" "tf" {
-  name                = "${data.azurerm_managed_disk.tf.name}_snapshot"
+  name                = "snapshot_${var.vm_name}"
   location            = data.azurerm_resource_group.tf.location
   resource_group_name = data.azurerm_resource_group.tf.name
   create_option       = "Copy"
@@ -10,7 +10,7 @@ resource "azurerm_snapshot" "tf" {
 
 # convert snapshot into managed disk
 resource "azurerm_managed_disk" "source" {
-  name                 = "${data.azurerm_managed_disk.tf.name}_${var.vm_name}_disk"
+  name                 = "disk_${var.vm_name}"
   location             = data.azurerm_resource_group.tf.location
   resource_group_name  = data.azurerm_resource_group.tf.name
   storage_account_type = "Standard_LRS"
@@ -49,7 +49,7 @@ resource "azurerm_virtual_machine" "tf" {
     storage_os_disk {
       caching                   = "ReadWrite"
       create_option             = "Attach"
-      name                      = "${data.azurerm_managed_disk.tf.name}_${var.vm_name}_disk"
+      name                      = "disk_${var.vm_name}"
       os_type                   = "Windows"
       write_accelerator_enabled = false
       managed_disk_id           = azurerm_managed_disk.source.id
