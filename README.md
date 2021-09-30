@@ -18,6 +18,7 @@ terraform apply -auto-approve
 module "snapshot-vm-one" {
   source                         = "./module"
   vm_name                        = "pspl-snapshot-xx"
+    vm_size                      = "Standard_LRS"
   azurerm_resource_group         = "P2_STRESS_XXX"
   azurerm_managed_disk_name      = "ps-XXX"
   subnet_name                    = "XXXX"
@@ -27,6 +28,7 @@ module "snapshot-vm-one" {
  
  module "snapshot-vm-two" {
   source                         = "./module"
+  vm_size                        = "Standard_LRS"
   vm_name                        = "pspl-snapshot-xx"
   azurerm_resource_group         = "P2_STRESS_YYY"
   azurerm_managed_disk_name      = "ps-yyyy"
