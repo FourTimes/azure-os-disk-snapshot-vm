@@ -21,6 +21,14 @@ resource "azurerm_managed_disk" "source" {
   ]
 }
 
+resource "azurerm_public_ip" "tf" {
+  name                = "IP_${var.vm_name}"
+  location             = data.azurerm_resource_group.tf.location
+  resource_group_name  = data.azurerm_resource_group.tf.name
+  allocation_method   = "Dynamic"
+}
+
+
 # Create the instance of the NIC
 resource "azurerm_network_interface" "tf" {
   name                = "${var.vm_name}-inc"
