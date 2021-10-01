@@ -39,6 +39,7 @@ resource "azurerm_network_interface" "tf" {
     name                          = lower(var.vm_name)
     subnet_id                     = data.azurerm_subnet.tf.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.tf.id
   }
   depends_on = [
     azurerm_managed_disk.source
