@@ -13,6 +13,10 @@ module "snapshot-vm-one" {
   # virtual network name
   subnet_virtual_network_name   = "PSPL_ITDev"
   # networking resource group name
-  network_azurerm_resource_group = "PSPL_ITDev"
+  network_azurerm_resource_group= "PSPL_ITDev"
+  additional_tags = {
+    Owner = "pspl"
+    Environment = "development"
+  }
 }
 

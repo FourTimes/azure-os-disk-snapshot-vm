@@ -52,7 +52,7 @@ resource "azurerm_virtual_machine" "tf" {
   resource_group_name   = data.azurerm_resource_group.tf.name
   name                  = var.vm_name
   network_interface_ids = [azurerm_network_interface.tf.id]
-  tags                  = {}
+  tags                  = var.additional_tags
   vm_size               = var.vm_size
   zones                 = []
     storage_os_disk {
